@@ -20,7 +20,8 @@ public class ChessPosition {
 	public int getRow() {
 		return row;
 	}
-		// posição de matriz p pposição de xadrez
+	
+	// posição de matriz p pposição de xadrez
 	protected Position toPosition(){
 		return new Position(8-row, column - 'a');
 	}
