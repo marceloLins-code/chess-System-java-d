@@ -5,10 +5,8 @@ import chess.ChessPiece;
 import chess.Color;
 
 public class Rook extends ChessPiece{
-
 	
-	
-	
+	//board.placePiece(new Rook(board, Color.WHITE), new Position(2, 1));
 	public Rook(Board board, Color color) {
 		super (board, color);
 	}

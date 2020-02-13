@@ -27,21 +27,22 @@ public class Board {
 	public void setColumns(int columns) {
 		this.columns = columns;
 	}
-	//  cria o tamanho da matriz peça
+	//  cria o tamanho  da matriz peça
+	// define o length da peça sobre o tabuleito
 	public Piece piece(int row , int column){
 		return pieces [row][column];
 	}
-	//
+	// seta, define a posição da peça
 	public Piece piece(Position position){
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	// aloca peça no tabuleiro
 	public void placePiece(Piece piece, Position position){
-		pieces[position.getRow()][position.getColumn()] = piece;
+		// bote essa peça aqui, nessa linha e coluna, essa linha e
+		// essa linha e essa coluna rece essa peça
+		pieces[position.getRow()][position.getColumn()] = piece; 
 		piece.position = position;
 	}
-	
-	
 	
 	
 	
