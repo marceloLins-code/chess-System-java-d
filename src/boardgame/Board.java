@@ -27,14 +27,20 @@ public class Board {
 	public void setColumns(int columns) {
 		this.columns = columns;
 	}
-	// alocar no tabuleiro retorna a matriz peça
+	//  cria o tamanho da matriz peça
 	public Piece piece(int row , int column){
 		return pieces [row][column];
 	}
-	
+	//
 	public Piece piece(Position position){
 		return pieces[position.getRow()][position.getColumn()];
 	}
+	// aloca peça no tabuleiro
+	public void placePiece(Piece piece, Position position){
+		pieces[position.getRow()][position.getColumn()] = piece;
+		piece.position = position;
+	}
+	
 	
 	
 	
