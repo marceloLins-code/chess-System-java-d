@@ -1,30 +1,53 @@
 package chess;
 
 import boardgame.Board;
-import chess.pieces.Rook;
+import boardgame.Piece;
+import boardgame.Position;
 import chess.pieces.King;
+import chess.pieces.Rook;
 
 public class ChassMatch {
+
 	private Board board;
 	
-	public ChassMatch(){
+	public ChassMatch() {
 		board = new Board(8, 8);
 		initialSetup();
 	}
-	// construindo e retornando a matriz de peças do xadrez
-	public ChessPiece[][] getPieces(){ 
-		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()]; // criou o tamanho
-		for (int i = 0; i < mat.length; i++) {
-			for (int j = 0; j < mat.length; j++) { // percorre
-				  mat[i][j]=(ChessPiece)board.piece(i,j);				
+	
+	public ChessPiece[][] getPieces() {
+		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
+		for (int i=0; i<board.getRows(); i++) {
+			for (int j=0; j<board.getColumns(); j++) {
+				mat[i][j] = (ChessPiece) board.piece(i, j);
 			}
 		}
 		return mat;
-		
-	}	
-	private void placeNewPiece(char column, int row,  ChessPiece piece){
+	}
+	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validateSourcePosition(source);
+		Piece capturedPiece = makeMove(source, target);
+		return (ChessPiece)capturedPiece;
+	}
+	
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return capturedPiece;
+	}
+	
+	private void validateSourcePosition(Position position) {
+		if (!board.thereIsAPiece(position)) {
+			throw new ChessException("There is no piece on source position");
+		}
+	}
+	
+	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
-		
 	}
 	
 		
